@@ -45,6 +45,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #if defined(__FreeBSD__)
     #include <unistd.h>
     #include <stddef.h>
+#elif defined(__GNUC__)
+    #include <unistd.h>
 #endif
 #include <libdeflate.h>
 
