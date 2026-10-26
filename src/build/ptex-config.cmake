@@ -8,7 +8,7 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 find_dependency(Threads REQUIRED)
 
-find_package(ZLIB REQUIRED)
+#find_package(ZLIB REQUIRED)
 
 set_and_check(Ptex_DIR @PACKAGE_CMAKE_INSTALL_PREFIX@)
 set_and_check(Ptex_LIBRARY_DIRS @PACKAGE_CMAKE_INSTALL_LIBDIR@)

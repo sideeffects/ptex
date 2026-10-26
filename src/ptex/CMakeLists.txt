@@ -13,9 +13,19 @@ set(SRCS
     PtexUtils.cpp
     PtexWriter.cpp)
 
+if (NOT CMAKE_DEBUG_POSTFIX)
+    set(CMAKE_DEBUG_POSTFIX _d)
+endif()
+
+if (WIN32)
+    set(lib_prefix "lib")
+else ()
+    set(lib_prefix "")
+endif()
+
 if(PTEX_BUILD_STATIC_LIBS)
     add_library(Ptex_static STATIC ${SRCS})
-    set_target_properties(Ptex_static PROPERTIES OUTPUT_NAME Ptex)
+    set_target_properties(Ptex_static PROPERTIES OUTPUT_NAME ${lib_prefix}Ptex_sidefx)
     target_compile_definitions(Ptex_static PUBLIC PTEX_STATIC)
     target_include_directories(Ptex_static
     PUBLIC
@@ -32,7 +42,7 @@ endif()
 if(PTEX_BUILD_SHARED_LIBS)
     add_library(Ptex_dynamic SHARED ${SRCS})
     set_target_properties(Ptex_dynamic PROPERTIES
-        OUTPUT_NAME Ptex
+        OUTPUT_NAME Ptex_sidefx
         SOVERSION "${PTEX_MAJOR_VERSION}.${PTEX_MINOR_VERSION}")
     target_include_directories(Ptex_dynamic
         PUBLIC
@@ -41,7 +51,7 @@ if(PTEX_BUILD_SHARED_LIBS)
             ${CMAKE_CURRENT_SOURCE_DIR})
     target_compile_definitions(Ptex_dynamic PRIVATE PTEX_EXPORTS)
     target_link_libraries(Ptex_dynamic
-      PUBLIC Threads::Threads
+      PUBLIC Threads::Threads ${ZLIB_LIBRARIES}
       PRIVATE libdeflate::libdeflate_shared
     )
     install(TARGETS Ptex_dynamic EXPORT Ptex DESTINATION ${CMAKE_INSTALL_LIBDIR})

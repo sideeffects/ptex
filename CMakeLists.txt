@@ -31,6 +31,8 @@ include(GNUInstallDirs)
 include(CTest)
 enable_testing()
 
+include(FindZLIB)
+
 # Setup platform-specific threading flags.
 find_package(Threads REQUIRED)
 

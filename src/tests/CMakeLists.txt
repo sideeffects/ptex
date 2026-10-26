@@ -6,10 +6,10 @@ add_executable(rtest rtest.cpp)
 add_executable(ftest ftest.cpp)
 add_executable(halftest halftest.cpp)
 
-target_link_libraries(wtest ${PTEX_LIBRARY})
-target_link_libraries(rtest ${PTEX_LIBRARY})
-target_link_libraries(ftest ${PTEX_LIBRARY})
-target_link_libraries(halftest ${PTEX_LIBRARY})
+target_link_libraries(wtest ${PTEX_LIBRARY} ${ZLIB_LIBRARIES})
+target_link_libraries(rtest ${PTEX_LIBRARY} ${ZLIB_LIBRARIES})
+target_link_libraries(ftest ${PTEX_LIBRARY} ${ZLIB_LIBRARIES})
+target_link_libraries(halftest ${PTEX_LIBRARY} ${ZLIB_LIBRARIES})
 
 # create a function to add tests that compare output
 # file results
